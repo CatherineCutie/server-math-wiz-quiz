@@ -11,6 +11,6 @@ export default defineConfig({
         react(),
     ],
     server: {
-        host: "localhost",
+        host: "https://catherine.balbuena.io/",
     },
 });
