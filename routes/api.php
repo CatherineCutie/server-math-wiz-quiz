@@ -59,3 +59,5 @@ Route::middleware('auth:sanctum')->group(function () {
     //scores
     Route::post('storeScore', [ScoreController::class, 'storeScore']);
 });
+
+Route::get('getScoresByQuizId/{id}', [QuizController::class, 'getScoresByQuizId']);
