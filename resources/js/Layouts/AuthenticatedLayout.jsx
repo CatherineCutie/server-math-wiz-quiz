@@ -35,6 +35,12 @@ export default function Authenticated({ user, header, children }) {
                                 >
                                     Uploads
                                 </NavLink>
+                                <NavLink
+                                    href={route("scores")}
+                                    active={route().current("scores")}
+                                >
+                                    Scores
+                                </NavLink>
                             </div>
                         </div>
 

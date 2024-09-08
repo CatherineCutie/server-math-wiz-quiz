@@ -1,38 +1,37 @@
-import Sidebar from "@/Components/Sidebar";
-import Table from "@/Components/Table";
 import { useDataStore } from "@/Context/DataStoreContext";
+import { useQueries } from "@tanstack/react-query";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
-import { useQueries } from "@tanstack/react-query";
-import { useEffect } from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
+import Sidebar from "@/Components/Sidebar";
+import Table from "@/Components/Table";
 
-export default function Dashboard({ auth }) {
+const Scores = ({ auth }) => {
     const { selectedMenu, setSelectedMenu } = useDataStore();
 
     useEffect(() => {
-        setSelectedMenu("students");
+        setSelectedMenu("quiz 1");
     }, []);
 
-    const dashboardItems = [
-        { name: "students" },
-        { name: "grades" },
-        { name: "sections" },
-    ];
+    const scoreItems = [{ name: "quiz 1", id: 1 }];
 
     const fetchData = async (menu) => {
         try {
-            const { data } = await axios.get("/api/" + menu);
+            const { data } = await axios.get("/api/getScoresByQuizId/" + menu);
 
-            return data.data;
+            console.log(data);
+
+            return data;
         } catch (error) {
             console.error(error);
         }
     };
 
     const queries = useQueries({
-        queries: dashboardItems.map((item) => ({
-            queryKey: ["fetchData" + item.name],
-            queryFn: () => fetchData(item.name),
+        queries: scoreItems.map((item) => ({
+            queryKey: ["fetchDataQuiz" + item.id],
+            queryFn: () => fetchData(item.id),
         })),
     });
 
@@ -60,7 +59,7 @@ export default function Dashboard({ auth }) {
                             </h1>
                             <div className="divider"></div>
                             <div className="flex gap-10">
-                                <Sidebar items={dashboardItems} />
+                                <Sidebar items={scoreItems} />
                                 <div className="overflow-x-auto flex-1">
                                     {isLoading ? (
                                         <p>Loading...</p>
@@ -77,4 +76,6 @@ export default function Dashboard({ auth }) {
             </div>
         </AuthenticatedLayout>
     );
-}
+};
+
+export default Scores;

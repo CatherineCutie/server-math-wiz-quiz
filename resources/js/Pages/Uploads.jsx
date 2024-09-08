@@ -5,16 +5,17 @@ import TextInput from "@/Components/TextInput";
 import { useDataStore } from "@/Context/DataStoreContext";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, useForm, usePage } from "@inertiajs/react";
+import { useEffect } from "react";
 import toast from "react-hot-toast";
 
 export default function Uploads({ auth }) {
-    const { selectedMenu } = useDataStore();
+    const { selectedMenu, setSelectedMenu } = useDataStore();
 
-    const dashboardItems = [
-        { name: "quiz" },
-        { name: "grades" },
-        { name: "sections" },
-    ];
+    useEffect(() => {
+        setSelectedMenu("upload");
+    }, []);
+
+    const dashboardItems = [{ name: "upload" }];
 
     const { data, setData, post, processing, errors, reset } = useForm({
         quiz_title: "",

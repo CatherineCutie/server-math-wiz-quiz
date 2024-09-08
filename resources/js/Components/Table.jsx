@@ -15,6 +15,7 @@ const Table = () => {
     const dataStudents = queryClient.getQueryData(["fetchDatastudents"]);
     const dataGrades = queryClient.getQueryData(["fetchDatagrades"]);
     const dataSections = queryClient.getQueryData(["fetchDatasections"]);
+    const fetchDataQuiz = queryClient.getQueryData(["fetchDataQuiz1"]);
 
     const [modelSelectedId, setModelSelectedId] = useState(null);
 
@@ -81,6 +82,15 @@ const Table = () => {
                             <th></th>
                             <th>Name</th>
                             <th></th>
+                        </tr>
+                    ) : null}
+
+                    {selectedMenu == "quiz 1" ? (
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Score</th>
+                            {/* <th></th> */}
                         </tr>
                     ) : null}
                 </thead>
@@ -160,6 +170,36 @@ const Table = () => {
                                             view
                                         </button>
                                     </td>
+                                </tr>
+                            ))}
+                        </>
+                    ) : null}
+
+                    {selectedMenu == "quiz 1" ? (
+                        <>
+                            {fetchDataQuiz.scores.map((item, index) => (
+                                <tr
+                                    key={item.id}
+                                    className="hover:bg-slate-300 transition-all duration-300 ease-in-out"
+                                >
+                                    <th>{index + 1}</th>
+                                    <td>
+                                        {item.student.first_name +
+                                            " " +
+                                            item.student.last_name}
+                                    </td>
+                                    <td>{item.score}</td>
+                                    {/* <td>
+                                        <button
+                                            className="btn btn-xs btn-ghost"
+                                            onClick={() => {
+                                                setModelSelectedId(item.id);
+                                                setContentModal(true);
+                                            }}
+                                        >
+                                            view
+                                        </button>
+                                    </td> */}
                                 </tr>
                             ))}
                         </>

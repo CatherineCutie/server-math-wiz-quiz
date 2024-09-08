@@ -17,9 +17,7 @@ Route::get('/user', function (Request $request) {
 
 
 
-Route::resource('/students', StudentController::class);
-Route::resource('/grades', GradeController::class);
-Route::resource('/sections', SectionController::class);
+
 
 Route::post('/tokens/create', function (Request $request) {
     $request->validate([
@@ -51,13 +49,18 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('grades', [GradeController::class, 'grades']);
 
     //sections
-    Route::get('sections', [SectionController::class, 'sections']);
-    Route::post('sections', [SectionController::class, 'store']);
-    Route::patch('sections/{sectionId}', [SectionController::class, 'edit']);
-    Route::delete('sections/{sectionId}', [SectionController::class, 'destroy']);
+    // Route::get('sections', [SectionController::class, 'sections']);
+    // Route::post('sections', [SectionController::class, 'store']);
+    // Route::patch('sections/{sectionId}', [SectionController::class, 'edit']);
+    // Route::delete('sections/{sectionId}', [SectionController::class, 'destroy']);
 
     //scores
     Route::post('storeScore', [ScoreController::class, 'storeScore']);
 });
 
 Route::get('getScoresByQuizId/{id}', [QuizController::class, 'getScoresByQuizId']);
+
+
+Route::resource('/students', StudentController::class);
+Route::resource('/grades', GradeController::class);
+Route::resource('/sections', SectionController::class);

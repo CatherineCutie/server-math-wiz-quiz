@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Score;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class ScoreController extends Controller
 {
@@ -35,9 +36,9 @@ class ScoreController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+        return Inertia::render('Scores');
     }
 
     /**

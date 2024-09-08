@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\ScoreController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,6 +29,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/uploads', [QuestionController::class, 'show'])->name('uploads');
     Route::post('/uploads', [QuestionController::class, 'store'])->name('uploads.store');
+
+    Route::get('/scores', [ScoreController::class, 'show'])->name('scores');
 });
 
 require __DIR__.'/auth.php';
