@@ -11,6 +11,6 @@ export default defineConfig({
         react(),
     ],
     hmr: {
-        host: "localhost",
+        host: "https://catherine.balbuena.io/",
     },
 });
