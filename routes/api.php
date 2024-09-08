@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\QuizController;
+use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentController;
 use App\Models\Student;
@@ -35,4 +37,25 @@ Route::post('/tokens/create', function (Request $request) {
         // Either the user doesn't exist or the password is incorrect
         return response()->json(['message' => 'Invalid credentials'], 401);
     }
+});
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    //quiz
+    Route::get('/getQuiz/{quiz_id}', [QuizController::class, 'getQuiz']);
+
+    //students
+    Route::get('students', [StudentController::class, 'students']);
+
+    //grades
+    Route::get('grades', [GradeController::class, 'grades']);
+
+    //sections
+    Route::get('sections', [SectionController::class, 'sections']);
+    Route::post('sections', [SectionController::class, 'store']);
+    Route::patch('sections/{sectionId}', [SectionController::class, 'edit']);
+    Route::delete('sections/{sectionId}', [SectionController::class, 'destroy']);
+
+    //scores
+    Route::post('storeScore', [ScoreController::class, 'storeScore']);
 });
