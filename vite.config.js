@@ -10,7 +10,4 @@ export default defineConfig({
         }),
         react(),
     ],
-    server: {
-        host: "https://catherine.balbuena.io/",
-    },
 });
