@@ -10,7 +10,4 @@ export default defineConfig({
         }),
         react(),
     ],
-    hmr: {
-        host: "https://catherine.balbuena.io/",
-    },
 });
