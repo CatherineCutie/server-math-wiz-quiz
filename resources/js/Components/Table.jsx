@@ -55,26 +55,29 @@ const Table = () => {
                     !isSmallScreen ? "justify-end" : "justify-between gap-2"
                 }`}
             >
-                {isSmallScreen ? (
-                    <select
-                        className="select select-sm select-bordered bg-white w-full text-xs"
-                        onChange={(e) => setSelectedMenu(e.target.value)}
-                    >
-                        <option value="students">Student</option>
-                        <option value="grades">Grade</option>
-                        <option value="sections">Section</option>
-                    </select>
-                ) : null}
-
                 {selectedMenu != "quiz" ? (
-                    <button
-                        className="btn btn-sm btn-primary text-white"
-                        onClick={() => {
-                            setMainModal(true);
-                        }}
-                    >
-                        Add
-                    </button>
+                    <>
+                        {isSmallScreen ? (
+                            <select
+                                className="select select-sm select-bordered bg-white w-full text-xs"
+                                onChange={(e) =>
+                                    setSelectedMenu(e.target.value)
+                                }
+                            >
+                                <option value="students">Student</option>
+                                <option value="grades">Grade</option>
+                                <option value="sections">Section</option>
+                            </select>
+                        ) : null}
+                        <button
+                            className="btn btn-sm btn-primary text-white"
+                            onClick={() => {
+                                setMainModal(true);
+                            }}
+                        >
+                            Add
+                        </button>
+                    </>
                 ) : null}
             </div>
             <div className="h-[50vh] overflow-y-auto my-2">
