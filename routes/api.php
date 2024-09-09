@@ -18,7 +18,7 @@ Route::get('/user', function (Request $request) {
 
 
 
-
+//wew
 Route::post('/tokens/create', function (Request $request) {
     $request->validate([
         'email' => 'required|email',
