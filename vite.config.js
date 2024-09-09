@@ -11,6 +11,6 @@ export default defineConfig({
         react(),
     ],
     server: {
-        host: true, // Or specify an IP address: '192.168.1.100'
+        host: true,
     },
 });

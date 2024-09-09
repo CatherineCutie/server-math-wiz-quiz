@@ -30,7 +30,7 @@ Route::post('/tokens/create', function (Request $request) {
     if ($student && Hash::check($request->password, $student->password)) {
         $token = $student->createToken('api-token');
         // Return the token
-        return response()->json(['token' => $token->plainTextToken]);
+        return response()->json(['token' => $token->plainTextToken, 'fullname' => $student->first_name+" "+$student->last_name ]);
     } else {
         // Either the user doesn't exist or the password is incorrect
         return response()->json(['message' => 'Invalid credentials'], 401);
