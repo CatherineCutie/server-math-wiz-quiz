@@ -10,6 +10,22 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+
+        <!-- Open Graph Meta Tags -->
+        <meta property="og:title" content="CathSandyServer" />
+        <meta property="og:description" content="Website own by Cath and Sandy." />
+        <meta property="og:image" content="{{ asset('assets/imgs/logo/Untitled.png') }}" />
+        <meta property="og:url" content="{{ url()->current() }}" />
+        <meta property="og:type" content="website" />
+
+        <!-- Twitter Card Meta Tags (Optional) -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="CathSandyServer">
+        <meta name="twitter:description" content="Website own by Cath and Sandy.">
+        <meta name="twitter:image" content="{{ asset('assets/imgs/logo/Untitled.png') }}">
+
+        <title inertia>{{ config('app.name', 'Laravel') }}</title>
+
         <!-- Scripts -->
         @routes
         @viteReactRefresh

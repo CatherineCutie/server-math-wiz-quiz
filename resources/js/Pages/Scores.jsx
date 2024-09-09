@@ -27,6 +27,8 @@ const Scores = ({ auth }) => {
 
             setQuizScoreData(data);
 
+            console.log(data);
+
             return data;
         } catch (error) {
             console.error(error);
@@ -101,23 +103,28 @@ const Scores = ({ auth }) => {
                                 <Sidebar items={scoreItems} />
                                 <div className="overflow-x-auto flex-1">
                                     <div className="flex justify-end">
-                                        {downloadButton ? (
-                                            <button
-                                                className="btn btn-primary btn-sm"
-                                                disabled
-                                            >
-                                                <span className="loading loading-spinner loading-xs"></span>
-                                                Download
-                                                <BsDownload size={15} />
-                                            </button>
-                                        ) : (
-                                            <button
-                                                className="btn btn-primary btn-sm"
-                                                onClick={downloadCSV}
-                                            >
-                                                Download
-                                                <BsDownload size={15} />
-                                            </button>
+                                        {Object.keys(data).length === 0 &&
+                                        data.constructor === Object ? null : (
+                                            <>
+                                                {downloadButton ? (
+                                                    <button
+                                                        className="btn btn-primary btn-sm"
+                                                        disabled
+                                                    >
+                                                        <span className="loading loading-spinner loading-xs"></span>
+                                                        Download
+                                                        <BsDownload size={15} />
+                                                    </button>
+                                                ) : (
+                                                    <button
+                                                        className="btn btn-primary btn-sm"
+                                                        onClick={downloadCSV}
+                                                    >
+                                                        Download
+                                                        <BsDownload size={15} />
+                                                    </button>
+                                                )}
+                                            </>
                                         )}
                                     </div>
                                     {isLoading ? (
