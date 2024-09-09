@@ -80,7 +80,7 @@ class QuestionController extends Controller
         }
 
 
-        return response()->json('wew');
+        return response()->json(['message'=>$request->input('quiz_title').' successfully uploaded.'],201);
 
         // return Inertia::render('Upload/Upload', [
         //     'flash' => [

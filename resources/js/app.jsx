@@ -6,6 +6,7 @@ import { createInertiaApp } from "@inertiajs/react";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { DataStoreProvider } from "./Context/DataStoreContext";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
 
 const appName = import.meta.env.VITE_APP_NAME || "Laravel";
 
@@ -29,6 +30,7 @@ createInertiaApp({
 
         root.render(
             <QueryClientProvider client={queryClient}>
+                <Toaster position="top-right" reverseOrder={false} />
                 <DataStoreProvider>
                     <App {...props} />
                 </DataStoreProvider>

@@ -40,11 +40,9 @@ export default function Uploads({ auth }) {
                 },
             });
 
-            // console.log(response);
-
             if (data) {
-                toast.success(data);
-                // setSuccessMessage(data);
+                toast.success(data.message);
+                e.target.reset();
                 reset();
             }
         } catch (error) {
