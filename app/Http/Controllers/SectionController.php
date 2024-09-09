@@ -12,7 +12,7 @@ class SectionController extends Controller
      */
     public function index()
     {
-        $sections = Section::paginate(20);
+        $sections = Section::paginate(100);
 
         return response()->json($sections);
     }

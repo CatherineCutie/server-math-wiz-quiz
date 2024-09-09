@@ -1,6 +1,7 @@
 import Sidebar from "@/Components/Sidebar";
 import Table from "@/Components/Table";
 import { useDataStore } from "@/Context/DataStoreContext";
+import useResponsive from "@/Hooks/useResponsive";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 import { useQueries } from "@tanstack/react-query";
@@ -8,6 +9,7 @@ import { useEffect } from "react";
 
 export default function Dashboard({ auth }) {
     const { selectedMenu, setSelectedMenu } = useDataStore();
+    const { isSmallScreen, isMediumScreen, isLargeScreen } = useResponsive();
 
     useEffect(() => {
         setSelectedMenu("students");
@@ -60,7 +62,10 @@ export default function Dashboard({ auth }) {
                             </h1>
                             <div className="divider"></div>
                             <div className="flex gap-10">
-                                <Sidebar items={dashboardItems} />
+                                {!isSmallScreen ? (
+                                    <Sidebar items={dashboardItems} />
+                                ) : null}
+
                                 <div className="overflow-x-auto flex-1">
                                     {isLoading ? (
                                         <p>Loading...</p>

@@ -12,7 +12,7 @@ class GradeController extends Controller
      */
     public function index()
     {
-        $grades = Grade::paginate(20);
+        $grades = Grade::paginate(100);
 
         return response()->json($grades);
     }

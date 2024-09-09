@@ -3,6 +3,7 @@ import InputLabel from "@/Components/InputLabel";
 import Sidebar from "@/Components/Sidebar";
 import TextInput from "@/Components/TextInput";
 import { useDataStore } from "@/Context/DataStoreContext";
+import useResponsive from "@/Hooks/useResponsive";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, useForm, usePage } from "@inertiajs/react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -12,6 +13,7 @@ import toast from "react-hot-toast";
 
 export default function Uploads({ auth }) {
     const { selectedMenu, setSelectedMenu } = useDataStore();
+    const { isSmallScreen, isMediumScreen, isLargeScreen } = useResponsive();
 
     const fetchQuiz = async (menu) => {
         try {
@@ -109,7 +111,10 @@ export default function Uploads({ auth }) {
                             </h1>
                             <div className="divider"></div>
                             <div className="flex gap-10">
-                                <Sidebar items={dashboardItems} />
+                                {!isSmallScreen ? (
+                                    <Sidebar items={dashboardItems} />
+                                ) : null}
+
                                 {quizDataIsLoading ? (
                                     <>Loading...</>
                                 ) : (

@@ -30,7 +30,6 @@ export default function Authenticated({ user, header, children }) {
                                 >
                                     Dashboard
                                 </NavLink>
-
                                 <NavLink
                                     href={route("uploads")}
                                     active={route().current("uploads")}
@@ -147,16 +146,28 @@ export default function Authenticated({ user, header, children }) {
                         >
                             Dashboard
                         </ResponsiveNavLink>
-                    </div>
-
-                    <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink
-                            href={route("dashboard")}
-                            active={route().current("dashboard")}
+                            href={route("uploads")}
+                            active={route().current("uploads")}
                         >
                             Uploads
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route("scores")}
+                            active={route().current("scores")}
+                        >
+                            Scores
+                        </ResponsiveNavLink>
                     </div>
+
+                    {/* <div className="pt-2 pb-3 space-y-1">
+                        <ResponsiveNavLink
+                            href={route("uploads")}
+                            active={route().current("uploads")}
+                        >
+                            Uploads
+                        </ResponsiveNavLink>
+                    </div> */}
 
                     <div className="pt-4 pb-1 border-t border-gray-200">
                         <div className="px-4">

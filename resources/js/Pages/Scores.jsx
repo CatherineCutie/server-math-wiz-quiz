@@ -8,10 +8,13 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Sidebar from "@/Components/Sidebar";
 import Table from "@/Components/Table";
+import useResponsive from "@/Hooks/useResponsive";
 
 const Scores = ({ auth }) => {
     const { selectedMenu, setSelectedMenu, setQuizScoreData, quizScoreData } =
         useDataStore();
+
+    const { isSmallScreen, isMediumScreen, isLargeScreen } = useResponsive();
 
     const [downloadButton, setDownloadButton] = useState(false);
 
@@ -100,7 +103,10 @@ const Scores = ({ auth }) => {
                             </h1>
                             <div className="divider"></div>
                             <div className="flex gap-10">
-                                <Sidebar items={scoreItems} />
+                                {!isSmallScreen ? (
+                                    <Sidebar items={scoreItems} />
+                                ) : null}
+
                                 <div className="overflow-x-auto flex-1">
                                     <div className="flex justify-end">
                                         {Object.keys(data).length === 0 &&

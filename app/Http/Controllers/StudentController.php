@@ -15,7 +15,7 @@ class StudentController extends Controller
     {
         // $students = Student::with('grade')->get(6);
         // $students = Student::with('grade')->paginate(20);
-        $students = Student::with(['grade','section'])->paginate(20);
+        $students = Student::with(['grade','section'])->paginate(100);
 
         return response()->json($students);
     }
