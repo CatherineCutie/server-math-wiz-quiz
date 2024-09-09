@@ -59,6 +59,11 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::get('getScoresByQuizId/{id}', [QuizController::class, 'getScoresByQuizId']);
+Route::get('/quizzes', [QuizController::class, 'getAllQuiz']);
+Route::get('/removeQuiz', [QuizController::class, 'removeQuiz']);
+
+
+Route::post('/download-quiz-csv', [QuizController::class, 'downloadQuizCsv']);
 
 
 Route::resource('/students', StudentController::class);

@@ -8,6 +8,7 @@ export function DataStoreProvider({ children }) {
     const [mainModal, setMainModal] = useState(false);
     const [paginatedData, setPaginatedData] = useState("");
     const [contentModal, setContentModal] = useState(false);
+    const [quizScoreData, setQuizScoreData] = useState(false);
 
     return (
         <DataStoreContext.Provider
@@ -20,6 +21,8 @@ export function DataStoreProvider({ children }) {
                 setPaginatedData,
                 contentModal,
                 setContentModal,
+                quizScoreData,
+                setQuizScoreData,
             }}
         >
             {children}

@@ -48,7 +48,7 @@ const Table = () => {
             ) : null}
 
             <div className="flex justify-end">
-                {selectedMenu != "quiz 1" ? (
+                {selectedMenu != "quiz" ? (
                     <button
                         className="btn btn-sm btn-primary text-white"
                         onClick={() => {
@@ -88,7 +88,7 @@ const Table = () => {
                         </tr>
                     ) : null}
 
-                    {selectedMenu == "quiz 1" ? (
+                    {selectedMenu == "quiz" ? (
                         <tr>
                             <th></th>
                             <th>Name</th>
@@ -178,7 +178,7 @@ const Table = () => {
                         </>
                     ) : null}
 
-                    {selectedMenu == "quiz 1" ? (
+                    {selectedMenu == "quiz" ? (
                         <>
                             {fetchDataQuiz.scores?.map((item, index) => (
                                 <tr
@@ -191,7 +191,10 @@ const Table = () => {
                                             " " +
                                             item.student.last_name}
                                     </td>
-                                    <td>{item.score}</td>
+                                    <td>
+                                        {item.score}/
+                                        {fetchDataQuiz.questions_count}
+                                    </td>
                                     {/* <td>
                                         <button
                                             className="btn btn-xs btn-ghost"

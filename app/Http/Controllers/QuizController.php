@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use App\Models\Quiz;
+use App\Models\Score;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
+use League\Csv\Writer;
 
 class QuizController extends Controller
 {
@@ -81,6 +85,12 @@ class QuizController extends Controller
             return '4';
         }
     }
+
+    public function getAllQuiz(){
+        $quizzes = Quiz::all();
+
+        return response()->json($quizzes);
+    }
     public function getQuiz($quiz_id)
     {
         // Fetch questions for the given quiz_id
@@ -120,8 +130,58 @@ class QuizController extends Controller
     }
 
     public function getScoresByQuizId($quiz_id){
-        $quiz_scores = Quiz::with(['scores.student.section', 'scores.student.grade'])->where('id', $quiz_id)->first();
+        $quiz_scores = Quiz::with(['scores.student.section', 'scores.student.grade'])
+            ->withCount('questions') // Add this to count the related questions
+            ->where('id', $quiz_id)
+            ->first();
 
         return response()->json($quiz_scores);
+    }
+
+    public function removeQuiz(){
+
+        try {
+            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+            Quiz::truncate();
+            Question::truncate();
+            Score::truncate();
+            DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+            return response()->json(['message'=>'Quiz remove successfully']);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json($th);
+        }
+       
+    }
+
+    public function downloadQuizCsv(Request $request)
+    {
+        // Extract data from the request
+        $data = $request->all();
+
+        // Create a new CSV writer
+        $csv = Writer::createFromString('');
+
+        // Insert the header
+        $csv->insertOne(['NAME', 'GRADE', 'SECTION', 'SCORE']);
+
+        // Insert data rows
+        foreach ($data['scores'] as $score) {
+            $csv->insertOne([
+                $score['student']['first_name'] . ' ' . $score['student']['last_name'],  // NAME
+                $score['student']['grade']['level'],  // GRADE
+                $score['student']['section']['name'],  // SECTION
+                "'" . $score['score'] . '/' . $data['questions_count'],  // SCORE (prefixed with a single quote)
+            ]);
+        }
+
+        $filename = 'quiz_scores_' . date('Y-m-d') . '.csv';
+
+        // Return the CSV as a downloadable response
+        return Response::make($csv->getContent(), 200, [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
+        ]);
     }
 }
