@@ -15,6 +15,7 @@ const Table = () => {
     const dataStudents = queryClient.getQueryData(["fetchDatastudents"]);
     const dataGrades = queryClient.getQueryData(["fetchDatagrades"]);
     const dataSections = queryClient.getQueryData(["fetchDatasections"]);
+
     const fetchDataQuiz = queryClient.getQueryData(["fetchDataQuiz1"]);
 
     const [modelSelectedId, setModelSelectedId] = useState(null);
@@ -47,14 +48,16 @@ const Table = () => {
             ) : null}
 
             <div className="flex justify-end">
-                <button
-                    className="btn btn-sm btn-primary text-white"
-                    onClick={() => {
-                        setMainModal(true);
-                    }}
-                >
-                    Add
-                </button>
+                {selectedMenu != "quiz 1" ? (
+                    <button
+                        className="btn btn-sm btn-primary text-white"
+                        onClick={() => {
+                            setMainModal(true);
+                        }}
+                    >
+                        Add
+                    </button>
+                ) : null}
             </div>
             <table className="table table-xs">
                 <thead>
@@ -177,7 +180,7 @@ const Table = () => {
 
                     {selectedMenu == "quiz 1" ? (
                         <>
-                            {fetchDataQuiz.scores.map((item, index) => (
+                            {fetchDataQuiz.scores?.map((item, index) => (
                                 <tr
                                     key={item.id}
                                     className="hover:bg-slate-300 transition-all duration-300 ease-in-out"
