@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Star;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -33,7 +34,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        Student::create([
+        $student = Student::create([
             'first_name'    =>  $request->studentFirstName,
             'last_name'     =>  $request->studentLastName,
             'email'         =>  $request->studentEmailName,
@@ -42,6 +43,10 @@ class StudentController extends Controller
             'grade_id'      =>  $request->gradeId
         ]);
 
+        Star::create([
+            'student_id' => $student->id,
+            'star_count' => 0
+        ]);
 
         return response()->json(['message'=>'Student successfully added'], 201);
     }
