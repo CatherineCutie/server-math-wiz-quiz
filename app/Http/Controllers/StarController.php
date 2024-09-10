@@ -14,8 +14,8 @@ class StarController extends Controller
         if (!$student) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
-        $studentWithStar = Student::with('star')->where('id', $student->id)->first();
-        return response()->json($studentWithStar);
+        $studentWithStar = Star::where('student_id', $student->id)->first();
+        return response()->json($studentWithStar->star_count);
     }
 
     public function addStar(Request $request){
