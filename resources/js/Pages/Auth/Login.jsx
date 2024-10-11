@@ -11,6 +11,7 @@ export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         email: "",
         password: "",
+        g_recaptcha_response: "",
         remember: false,
     });
 
@@ -22,8 +23,8 @@ export default function Login({ status, canResetPassword }) {
         });
     };
 
-    const captchaDisplay = (e) => {
-        console.log(e);
+    const handleCaptchaChange = (response) => {
+        setData("g_recaptcha_response", response);
     };
 
     return (
@@ -72,8 +73,9 @@ export default function Login({ status, canResetPassword }) {
 
                 <div className="flex justify-center">
                     <ReCAPTCHA
+                        className="flex justify-center"
                         sitekey={import.meta.env.VITE_GOOGLE_CAPTCHA}
-                        onChange={(e) => captchaDisplay(e.target.value)}
+                        onChange={handleCaptchaChange}
                     />
                 </div>
 

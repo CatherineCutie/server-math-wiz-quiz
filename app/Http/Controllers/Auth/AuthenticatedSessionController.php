@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -29,6 +30,19 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        $validate = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required|string',
+            'g_recaptcha_response' => 'required|captcha'
+        ]);
+    
+        // If validation fails, return with errors
+        if ($validate->fails()) {
+            return back()->withErrors($validate)->withInput();
+        }
+
+
+
         $request->authenticate();
 
         $request->session()->regenerate();
