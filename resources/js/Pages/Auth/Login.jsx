@@ -73,7 +73,7 @@ export default function Login({ status, canResetPassword }) {
 
                 <div className="my-4">
                     <ReCAPTCHA
-                        className="w-full"
+                        className="flex justify-center"
                         sitekey={import.meta.env.VITE_GOOGLE_CAPTCHA}
                         onChange={handleCaptchaChange}
                     />
