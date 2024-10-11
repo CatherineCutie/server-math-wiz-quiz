@@ -71,11 +71,15 @@ export default function Login({ status, canResetPassword }) {
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
-                <div className="flex justify-center">
+                <div className="my-4">
                     <ReCAPTCHA
                         className="flex justify-center"
                         sitekey={import.meta.env.VITE_GOOGLE_CAPTCHA}
                         onChange={handleCaptchaChange}
+                    />
+                    <InputError
+                        message={errors.g_recaptcha_response}
+                        className="mt-2"
                     />
                 </div>
 
