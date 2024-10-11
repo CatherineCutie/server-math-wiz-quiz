@@ -10,7 +10,7 @@ export default defineConfig({
         }),
         react(),
     ],
-    server: {
-        host: true,
-    },
+    // server: {
+    //     host: true,
+    // },
 });
