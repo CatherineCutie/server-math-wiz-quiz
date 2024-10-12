@@ -48,7 +48,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //students
     Route::get('students', [StudentController::class, 'students']);
-    Route::post('studentsBatch', [StudentController::class, 'studentsBatch']);
 
 
     
@@ -79,5 +78,8 @@ Route::post('/download-quiz-csv', [QuizController::class, 'downloadQuizCsv']);
 Route::resource('/students', StudentController::class);
 Route::resource('/grades', GradeController::class);
 Route::resource('/sections', SectionController::class);
+
+Route::post('studentsBatch', [StudentController::class, 'studentsBatch']);
+
 
 
