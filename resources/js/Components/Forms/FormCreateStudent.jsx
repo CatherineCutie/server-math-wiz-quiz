@@ -67,6 +67,7 @@ const FormCreateStudent = () => {
             <div role="tablist" className="tabs tabs-boxed">
                 <div
                     role="tab"
+                    onClick={() => setSelectedTab("single")}
                     className={`tab ${
                         selectedTab == "single" ? "tab-active" : ""
                     }`}
@@ -75,6 +76,7 @@ const FormCreateStudent = () => {
                 </div>
                 <div
                     role="tab"
+                    onClick={() => setSelectedTab("batch")}
                     className={`tab ${
                         selectedTab == "batch" ? "tab-active" : ""
                     }`}
