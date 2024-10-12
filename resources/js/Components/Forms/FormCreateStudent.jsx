@@ -196,10 +196,6 @@ const FormCreateStudent = () => {
                                 setStudentBatchData(e.target.files[0])
                             }
                         />
-                        <InputError
-                            message={errors.fileInput}
-                            className="mt-2"
-                        />
                     </div>
                     <button className="btn btn-primary w-full text-white mt-10">
                         Submit
