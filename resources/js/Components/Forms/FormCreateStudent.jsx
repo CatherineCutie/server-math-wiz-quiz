@@ -71,6 +71,9 @@ const FormCreateStudent = () => {
                 toast.success(data.message);
                 e.target.reset();
                 setMainModal(false);
+                queryClient.invalidateQueries({
+                    queryKey: ["fetchDatastudents"],
+                });
             }
         } catch (error) {
             console.error(error);
