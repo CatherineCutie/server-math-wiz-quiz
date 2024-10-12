@@ -15,6 +15,7 @@ const FormCreateStudent = () => {
     const [studentPasswordName, setStudentPasswordName] = useState("");
     const [gradeId, setGradeId] = useState("");
     const [sectionId, setSectionId] = useState("");
+    const [selectedTab, setSelectedTab] = useState("single");
 
     const dataGrades = queryClient.getQueryData(["fetchDatagrades"]);
     const dataSections = queryClient.getQueryData(["fetchDatasections"]);
@@ -63,6 +64,24 @@ const FormCreateStudent = () => {
                 </button>
             </div>
             <div className="divider"></div>
+            <div role="tablist" className="tabs tabs-boxed">
+                <div
+                    role="tab"
+                    className={`tab ${
+                        selectedTab == "single" ? "tab-active" : ""
+                    }`}
+                >
+                    Single
+                </div>
+                <div
+                    role="tab"
+                    className={`tab ${
+                        selectedTab == "batch" ? "tab-active" : ""
+                    }`}
+                >
+                    Batch
+                </div>
+            </div>
             <form onSubmit={handleSubmit}>
                 <input
                     name="studentFirstName"
