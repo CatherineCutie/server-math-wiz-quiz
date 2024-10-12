@@ -55,10 +55,10 @@ class StudentController extends Controller
     public function studentsBatch(Request $request)
     {
         $request->validate([
-            'fileInput' => 'required|file|max:2048'
+            'studentBatchData' => 'required|file|max:2048'
         ]);
 
-        $file = $request->file('fileInput');
+        $file = $request->file('studentBatchData');
         
         $csv = Reader::createFromPath($file->getRealPath(), 'r');
         $csv->setHeaderOffset(0);
