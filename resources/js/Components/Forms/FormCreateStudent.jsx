@@ -84,73 +84,82 @@ const FormCreateStudent = () => {
                     Batch
                 </div>
             </div>
-            <form onSubmit={handleSubmit}>
-                <input
-                    name="studentFirstName"
-                    type="text"
-                    placeholder="First Name"
-                    className="input input-bordered w-full bg-transparent my-1"
-                    value={studentFirstName}
-                    onChange={(e) => setStudentFirstName(e.target.value)}
-                />
+            {selectedTab == "single" ? (
+                <form onSubmit={handleSubmit}>
+                    <input
+                        name="studentFirstName"
+                        type="text"
+                        placeholder="First Name"
+                        className="input input-bordered w-full bg-transparent my-1"
+                        value={studentFirstName}
+                        onChange={(e) => setStudentFirstName(e.target.value)}
+                    />
 
-                <input
-                    name="studentLastName"
-                    type="text"
-                    placeholder="Last Name"
-                    className="input input-bordered w-full bg-transparent my-1"
-                    value={studentLastName}
-                    onChange={(e) => setStudentLastName(e.target.value)}
-                />
+                    <input
+                        name="studentLastName"
+                        type="text"
+                        placeholder="Last Name"
+                        className="input input-bordered w-full bg-transparent my-1"
+                        value={studentLastName}
+                        onChange={(e) => setStudentLastName(e.target.value)}
+                    />
 
-                <input
-                    name="studentEmailName"
-                    type="text"
-                    placeholder="Email"
-                    className="input input-bordered w-full bg-transparent my-1"
-                    value={studentEmailName}
-                    onChange={(e) => setStudentEmailName(e.target.value)}
-                />
+                    <input
+                        name="studentEmailName"
+                        type="text"
+                        placeholder="Email"
+                        className="input input-bordered w-full bg-transparent my-1"
+                        value={studentEmailName}
+                        onChange={(e) => setStudentEmailName(e.target.value)}
+                    />
 
-                <input
-                    name="studentPasswordName"
-                    type="password"
-                    placeholder="Password"
-                    className="input input-bordered w-full bg-transparent my-1"
-                    value={studentPasswordName}
-                    onChange={(e) => setStudentPasswordName(e.target.value)}
-                />
+                    <input
+                        name="studentPasswordName"
+                        type="password"
+                        placeholder="Password"
+                        className="input input-bordered w-full bg-transparent my-1"
+                        value={studentPasswordName}
+                        onChange={(e) => setStudentPasswordName(e.target.value)}
+                    />
 
-                <select
-                    className="select select-bordered w-full bg-transparent my-1"
-                    onChange={(e) => setGradeId(e.target.value)}
-                >
-                    <option value="">--Grade--</option>
+                    <select
+                        className="select select-bordered w-full bg-transparent my-1"
+                        onChange={(e) => setGradeId(e.target.value)}
+                    >
+                        <option value="">--Grade--</option>
 
-                    {dataGrades?.map((item) => (
-                        <option key={item.level} value={item.id}>
-                            {item.level}
-                        </option>
-                    ))}
-                </select>
+                        {dataGrades?.map((item) => (
+                            <option key={item.level} value={item.id}>
+                                {item.level}
+                            </option>
+                        ))}
+                    </select>
 
-                <select
-                    className="select select-bordered w-full bg-transparent my-1"
-                    onChange={(e) => setSectionId(e.target.value)}
-                >
-                    <option value="">--Section--</option>
+                    <select
+                        className="select select-bordered w-full bg-transparent my-1"
+                        onChange={(e) => setSectionId(e.target.value)}
+                    >
+                        <option value="">--Section--</option>
 
-                    {dataSections?.map((item) => (
-                        <option key={item.name} value={item.id}>
-                            {item.name}
-                        </option>
-                    ))}
-                </select>
+                        {dataSections?.map((item) => (
+                            <option key={item.name} value={item.id}>
+                                {item.name}
+                            </option>
+                        ))}
+                    </select>
 
-                <button className="btn btn-primary w-full text-white mt-10">
-                    Create
-                </button>
-            </form>
+                    <button className="btn btn-primary w-full text-white mt-10">
+                        Create
+                    </button>
+                </form>
+            ) : null}
+            {selectedTab == "batch" ? (
+                <form onSubmit={handleSubmit}>
+                    <button className="btn btn-primary w-full text-white mt-10">
+                        Submit
+                    </button>
+                </form>
+            ) : null}
         </ModalMain>
     );
 };
