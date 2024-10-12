@@ -71,7 +71,6 @@ class QuestionController extends Controller
                 ],
             ];
 
-            // Create or update the question
             Question::create([
                 'quiz_id' => $quiz->id,
                 'question_text' => $question['questions'],
