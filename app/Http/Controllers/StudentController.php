@@ -66,7 +66,6 @@ class StudentController extends Controller
 
         foreach ($students as $student) {
 
-            // Create or update the question
             $student = Student::create([
                 'first_name'    =>  $student['firstname'],
                 'last_name'     =>  $student['lastname'],
