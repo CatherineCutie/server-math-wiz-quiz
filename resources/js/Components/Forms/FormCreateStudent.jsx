@@ -16,6 +16,7 @@ const FormCreateStudent = () => {
     const [gradeId, setGradeId] = useState("");
     const [sectionId, setSectionId] = useState("");
     const [selectedTab, setSelectedTab] = useState("single");
+    const [studentBatchData, setStudentBatchData] = useState("single");
 
     const dataGrades = queryClient.getQueryData(["fetchDatagrades"]);
     const dataSections = queryClient.getQueryData(["fetchDatasections"]);
@@ -47,6 +48,30 @@ const FormCreateStudent = () => {
             }
 
             toast.success(data.message);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const handleBatchSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const { data } = await axios.post(
+                "/api/studentsBatch",
+                { studentBatchData },
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                }
+            );
+
+            if (data) {
+                toast.success(data.message);
+                e.target.reset();
+                setMainModal(false);
+            }
         } catch (error) {
             console.error(error);
         }
@@ -154,7 +179,28 @@ const FormCreateStudent = () => {
                 </form>
             ) : null}
             {selectedTab == "batch" ? (
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleBatchSubmit}>
+                    <div className="mt-4">
+                        <label
+                            htmlFor="fileInput"
+                            className="block text-sm font-medium text-gray-700"
+                        >
+                            Upload File
+                        </label>
+                        <input
+                            type="file"
+                            id="fileInput"
+                            name="fileInput"
+                            className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
+                            onChange={(e) =>
+                                setStudentBatchData(e.target.files[0])
+                            }
+                        />
+                        <InputError
+                            message={errors.fileInput}
+                            className="mt-2"
+                        />
+                    </div>
                     <button className="btn btn-primary w-full text-white mt-10">
                         Submit
                     </button>

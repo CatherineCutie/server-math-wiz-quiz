@@ -48,6 +48,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //students
     Route::get('students', [StudentController::class, 'students']);
+    Route::post('studentsBatch', [StudentController::class, 'studentsBatch']);
+
+
+    
 
     //grades
     Route::get('grades', [GradeController::class, 'grades']);
