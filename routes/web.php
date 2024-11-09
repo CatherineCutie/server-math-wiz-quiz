@@ -27,9 +27,9 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/uploads', [QuestionController::class, 'show'])->name('uploads')->middleware(RoleMiddleware::class.":admin");
-    Route::post('/uploads', [QuestionController::class, 'store'])->name('uploads.store')->middleware(RoleMiddleware::class.":admin");
-    Route::get('/scores', [ScoreController::class, 'show'])->name('scores')->middleware(RoleMiddleware::class.":admin");
+    Route::get('/uploads', [QuestionController::class, 'show'])->name('uploads');
+    Route::post('/uploads', [QuestionController::class, 'store'])->name('uploads.store');
+    Route::get('/scores', [ScoreController::class, 'show'])->name('scores');
 });
 
 
